@@ -1,10 +1,11 @@
 from django.contrib import admin
+from django.db.models import Count
+from django.template.response import TemplateResponse
 from django.utils.safestring import mark_safe
-
 from courses.models import Category, Course, Lesson
-
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.urls import path
 
 class LessonForm(forms.ModelForm):
     content = forms.CharField(widget=CKEditorUploadingWidget)
@@ -14,7 +15,7 @@ class LessonForm(forms.ModelForm):
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['id', 'subject', 'created_date', 'active']
+    list_display = ['id', 'subject','category', 'created_date', 'active']
     search_fields = ['subject']
     list_filter = ['id', 'subject', 'created_date']
     readonly_fields = ['image_views']
@@ -29,10 +30,24 @@ class CourseAdmin(admin.ModelAdmin):
         }
 
 
+
 class LessonAdmin(admin.ModelAdmin):
     form = LessonForm
 
+class MyAdminSite(admin.AdminSite):
+    site_header = 'ENGLISH COURSES APP'
 
-admin.site.register(Category)
-admin.site.register(Course, CourseAdmin)
-admin.site.register(Lesson, LessonAdmin)
+    def get_urls(self):
+        return [path('stats-view/', self.stats_view)] + super().get_urls()
+
+    def stats_view(self, request):
+        stats = Category.objects.annotate(count=Count('course')).values('id', 'name','count')
+
+        return TemplateResponse(request, 'admin/stats.html', {'stats': stats})
+
+admin_site = MyAdminSite()
+
+
+admin_site.register(Category)
+admin_site.register(Course, CourseAdmin)
+admin_site.register(Lesson, LessonAdmin)

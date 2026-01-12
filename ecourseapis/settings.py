@@ -42,8 +42,13 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'courses.apps.CoursesConfig',
-
+    'rest_framework',
+    'drf_yasg'
 ]
+
+REST_FRAMEWORK = {
+   
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -81,13 +86,17 @@ WSGI_APPLICATION = 'ecourseapis.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': 'coursedb',
         'USER': 'root',
-        'PASSWORD': '12345678',
+        'PASSWORD': 'root',
         'HOST': ''  # mặc định localhost
+
     }
 }
+
+import pymysql
+pymysql.install_as_MySQLdb()
 
 AUTH_USER_MODEL = 'courses.User'
 
