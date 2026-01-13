@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'ecourseapis.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'coursedb',
         'USER': 'root',
         'PASSWORD': 'root',
