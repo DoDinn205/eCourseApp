@@ -28,4 +28,4 @@ const categories = ({ setCate }) => {
     );
 }
 
-export default categories;.
+export default categories;

@@ -38,4 +38,4 @@ const Lesson=({route})=>{
 
 }
 
-export default Lesson;.
+export default Lesson;

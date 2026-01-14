@@ -8,4 +8,4 @@ export const endpoints={
 
 export default axios.create({
     baseURL: BASE_URL
-});.
+});

@@ -77,4 +77,4 @@ const Courses = ({cate,navigation}) => {
     );
 }
 
-export default Courses;.
+export default Courses;

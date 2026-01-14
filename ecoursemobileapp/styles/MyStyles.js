@@ -21,4 +21,4 @@ export default StyleSheet.create({
         height: 100,
         borderRadius: 50
     }
-}).
+})
