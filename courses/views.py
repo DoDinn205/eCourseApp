@@ -45,7 +45,7 @@ class LessonsView(viewsets.ViewSet, generics.RetrieveAPIView):
 
         return [permissions.AllowAny()]
 
-    @action(methods=['get''post'], url_path='comments', detail=True)
+    @action(methods=['get','post'], url_path='comments', detail=True)
     def get_comments(self, request, pk):
         if request.method.__eq__('post'):
             s = serializers.CommentSerializer(data={
@@ -54,7 +54,7 @@ class LessonsView(viewsets.ViewSet, generics.RetrieveAPIView):
                 'lesson': pk
             })
             s.is_valid(raise_exception=True)
-            c = s.save
+            c = s.save()
             return Response(serializers.CommentSerializer(c).data, status=status.HTTP_201_CREATED)
 
         '''
