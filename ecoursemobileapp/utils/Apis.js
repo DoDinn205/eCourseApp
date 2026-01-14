@@ -1,4 +1,4 @@
-const BASE_URL ='https://thanhduong.pythonanywhere.com/';
+const BASE_URL ='https://teaching2504.pythonanywhere.com/';
 
 export const endpoints={
     'categories':'/categories/',
