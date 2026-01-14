@@ -36,6 +36,9 @@ class CoursesView(viewsets.ViewSet, generics.ListAPIView):
 
 
 class LessonsView(viewsets.ViewSet, generics.RetrieveAPIView):
+    """
+    API này dùng để lấy chi tiết bài học
+    """
     queryset = Lesson.objects.prefetch_related('tags').filter(active=True)
     serializer_class = serializers.LessonDetailsSerializer
 
@@ -45,7 +48,7 @@ class LessonsView(viewsets.ViewSet, generics.RetrieveAPIView):
 
         return [permissions.AllowAny()]
 
-    @action(methods=['get''post'], url_path='comments', detail=True)
+    @action(methods=['get','post'], url_path='comments', detail=True)
     def get_comments(self, request, pk):
         if request.method.__eq__('post'):
             s = serializers.CommentSerializer(data={
@@ -54,7 +57,7 @@ class LessonsView(viewsets.ViewSet, generics.RetrieveAPIView):
                 'lesson': pk
             })
             s.is_valid(raise_exception=True)
-            c = s.save
+            c = s.save()
             return Response(serializers.CommentSerializer(c).data, status=status.HTTP_201_CREATED)
 
         '''
@@ -97,6 +100,9 @@ class UserView(viewsets.ViewSet, generics.CreateAPIView):
         return Response(serializers.UserSerializer(u).data, status=status.HTTP_200_OK)
 
 class CommentView(viewsets.ViewSet, generics.DestroyAPIView):
+    """
+    API này dùng để xóa bình luận
+    """
     queryset = Comment.objects.filter(active=True)
     serializer_class = serializers.CommentSerializer
     permission_classes=[perms.CommentOwner]

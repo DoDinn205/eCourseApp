@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from ckeditor.fields import RichTextField
 class User(AbstractUser):
-    pass
+    avatar = models.ImageField(upload_to="users/%Y/%m", null=True, blank=True)
 
 class Category(models.Model):
     name = models.CharField(max_length=50, unique=True)
@@ -21,6 +21,8 @@ class Course(BaseModel):
     subject = models.CharField(max_length=255)
     description = models.TextField(null=False)
     image = models.ImageField(upload_to='courses/%Y/%m', null=True)
+    fee = models.IntegerField(default=1000000)
+    studytime = models.IntegerField(default=65)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
 
     def __str__(self):
@@ -44,6 +46,7 @@ class Tag(BaseModel):
 class Interaction(BaseModel):
     user=models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     lesson = models.ForeignKey(Lesson,on_delete=models.CASCADE, null=False)
+    course = models.ForeignKey(Course, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         abstract = True

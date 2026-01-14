@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb945c37-b8f4-4ce1-bf93-163b4e430ac5" name="Changes" comment="" />
+    <list default="true" id="fb945c37-b8f4-4ce1-bf93-163b4e430ac5" name="Changes" comment="update data backup and data migrated">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -57,6 +59,48 @@
       <option name="presentableId" value="Default" />
       <updated>1768336732886</updated>
     </task>
+    <task id="LOCAL-00001" summary="update CSDL">
+      <option name="closed" value="true" />
+      <created>1768338458606</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1768338458606</updated>
+    </task>
+    <task id="LOCAL-00002" summary="update swagger and Database">
+      <option name="closed" value="true" />
+      <created>1768350164373</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1768350164373</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update data backup and data migrated">
+      <option name="closed" value="true" />
+      <created>1768358758051</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1768358758051</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="update CSDL" />
+    <MESSAGE value="update swagger and Database" />
+    <MESSAGE value="update data backup and data migrated" />
+    <option name="LAST_COMMIT_MESSAGE" value="update data backup and data migrated" />
   </component>
 </project>

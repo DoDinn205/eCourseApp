@@ -15,8 +15,8 @@ class LessonForm(forms.ModelForm):
 
 
 class CourseAdmin(admin.ModelAdmin):
-    list_display = ['id', 'subject','description','category', 'created_date', 'active']
-    search_fields = ['subject', 'description']
+    list_display = ['id', 'subject','description','category', 'created_date', 'active', 'fee', 'studytime']
+    search_fields = ['subject', 'description', 'fee', 'studytime']
     list_filter = ['id', 'subject', 'created_date']
     readonly_fields = ['image_views']
 

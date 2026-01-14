@@ -24,11 +24,11 @@ from drf_yasg import openapi
 
 schema_view = get_schema_view(
     openapi.Info(
-        title="Course API",
+        title="English Course API",
         default_version='v1',
-        description="APIs for CourseApp",
-        contact=openapi.Contact(email="thanh.dh@ou.edu.vn"),
-        license=openapi.License(name="Dương Hữu Thành@2021"),
+        description="APIs for ECourseApp",
+        contact=openapi.Contact(email="2351010216trinh@ou.edu.vn"),
+        license=openapi.License(name="Phú Điền - 2351010048dien@ou.edu.vn và Tuyết Trinh - 2351010216Trinh@ou.edu.vn"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
