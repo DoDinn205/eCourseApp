@@ -1,5 +1,4 @@
 import { StyleSheet } from "react-native";
-import { avatar } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -20,5 +19,10 @@ export default StyleSheet.create({
         width: 100,
         height: 100,
         borderRadius: 50
+    },
+    title: {
+        fontSize: 30,
+        fontWeight:"bold",
+        color: "blue"
     }
 })
