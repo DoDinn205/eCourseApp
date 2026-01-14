@@ -36,6 +36,9 @@ class CoursesView(viewsets.ViewSet, generics.ListAPIView):
 
 
 class LessonsView(viewsets.ViewSet, generics.RetrieveAPIView):
+    """
+    API này dùng để lấy chi tiết bài học
+    """
     queryset = Lesson.objects.prefetch_related('tags').filter(active=True)
     serializer_class = serializers.LessonDetailsSerializer
 
@@ -97,6 +100,9 @@ class UserView(viewsets.ViewSet, generics.CreateAPIView):
         return Response(serializers.UserSerializer(u).data, status=status.HTTP_200_OK)
 
 class CommentView(viewsets.ViewSet, generics.DestroyAPIView):
+    """
+    API này dùng để xóa bình luận
+    """
     queryset = Comment.objects.filter(active=True)
     serializer_class = serializers.CommentSerializer
     permission_classes=[perms.CommentOwner]
