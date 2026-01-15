@@ -1,0 +1,16 @@
+[
+	{
+		"id" : 1,
+		"password" : "pbkdf2_sha256$1200000$sFmHRFaW33BZkLYonRjxWm$keEVDaWYeFuPWSQvQYXEi3dVjOorcBWWECSsx8HaBPk=",
+		"last_login" : "2026-01-14 00:20:47.672702",
+		"is_superuser" : 1,
+		"username" : "admin",
+		"first_name" : "",
+		"last_name" : "",
+		"email" : "tuyettrinhnguyenthi25042005@gmail.com",
+		"is_staff" : 1,
+		"is_active" : 1,
+		"date_joined" : "2026-01-13 20:58:46.316284",
+		"avatar" : null
+	}
+]
