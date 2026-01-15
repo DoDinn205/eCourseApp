@@ -1,10 +1,13 @@
 import { View, Text, ScrollView, TextInput } from "react-native";
 import MyStyles from "../../styles/MyStyles";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { Button, HelperText } from "react-native-paper";
+import Apis, { authApis, endpoints } from "../../utils/Apis";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { MyUserContext } from "../../utils/contexts/MyContext";
 
-const Login=()=>{
+const Login = () => {
     const info = [{
         title: "Tên đăng nhập",
         field: "username",
@@ -20,7 +23,7 @@ const Login=()=>{
     const [err, setErr] = useState(false);
     const [loading, setLoading] = useState(false);
     const nav = useNavigation();
-
+    const[,dispatch]=useContext(MyUserContext);
 
     const validate = () => {
         // if (!user.password || user.password !== user.confirm) {
@@ -31,9 +34,42 @@ const Login=()=>{
         return true;
     }
 
-    const register = async () => {
+    const login = async () => {
         if (validate() === true) {
-            
+            try {
+                setLoading(true);
+                let res = await Apis.post(endpoints['login'], {
+                    ...user,
+                    'client_id': '', //Lưu vào biến môi trường của react
+                    'client_secret': '', //Lưu vào biến môi trường của react
+                    'grant_type': 'password'
+                }, {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                console.info(res.data);
+                AsyncStorage.setItem('token', res.data.access_token);
+
+                setTimeout(async() => {
+
+                    let user = await authApis(res.data.access_token).get(endpoints['current-user']);
+                    console.info(user.data);
+
+                    dispatch({
+                        "type":"login",
+                        "payload":user.data
+                    });
+                }, 500);
+
+                
+
+            } catch (ex) {
+                console.error(ex);
+            } finally {
+                setLoading(false);
+            }
         }
     }
 

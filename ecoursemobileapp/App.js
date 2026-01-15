@@ -5,6 +5,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import Register from "./screens/User/Register";
 import Login from "./screens/User/Login";
 import { createNativeBottomTabNavigator } from "@react-navigation/bottom-tabs/unstable";
+import { MyUserContext } from "./utils/contexts/MyContext";
+import { useContext, useReducer } from "react";
+import MyUserReducer from "./utils/reducers/MyUserReducer";
 
 const Stack = createNativeStackNavigator();
 
@@ -21,21 +24,29 @@ const StackNavigatior = () => {
 
 const Tab = createNativeBottomTabNavigator();
 const TabNavigator = () => {
+  const [user,] = useContext(MyUserContext);
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={StackNavigatior} options={{ title: "Màn hình chính", tabBarIcon: () => <Icon color="blue" size={30} source="home" /> }} />
-      <Tab.Screen name="Register" component={Register} options={{ title: "Đăng ký", tabBarIcon: () => <Icon color="blue" size={30} source="account" /> }} />
-      <Tab.Screen name="Login" component={Login} options={{ title: "Đăng nhập", tabBarIcon: () => <Icon color="blue" size={30} source="login" /> }} />
+      {user === null ? <>
+        <Tab.Screen name="Register" component={Register} options={{ title: "Đăng ký", tabBarIcon: () => <Icon color="blue" size={30} source="account" /> }} />
+        <Tab.Screen name="Login" component={Login} options={{ title: "Đăng nhập", tabBarIcon: () => <Icon color="blue" size={30} source="login" /> }} />
+      </> : <>
+      <Tab.Screen name="Profile" component={User} options={{ title: "Profile", tabBarIcon: () => <Icon color="blue" size={30} source="account" /> }} />
+      </>}
+
     </Tab.Navigator>
   )
 }
 
 const App = () => {
-
+  const [user, dispatch] = useReducer(MyUserReducer, null);
   return (
-    <NavigationContainer>
-      <StackNavigatior />
-    </NavigationContainer>
+    <MyUserContext.Provider value= { [user, dispatch]}>
+      <NavigationContainer>
+        <StackNavigatior />
+      </NavigationContainer>
+    </MyUserContext.Provider>
   );
 }
 
